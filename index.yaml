@@ -1,7 +1,5 @@
 # Which tutorials to present in the start-up "List of tutorials" tab.
 
-- name: Debugger
-  tip-commit: bn/debugger-01
 - name: Script-by-script Hello World
   tip-commit: bn/sbs-hello-02
 - name: Script-by-script shoot the fruit
