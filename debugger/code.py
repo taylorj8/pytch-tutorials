@@ -28,7 +28,7 @@ class Alien(pytch.Sprite):
 
     @pytch.when_this_sprite_clicked
     def handle_hit(self):
-        if self.costume_number == 2:
+        if self.costume_number == 1:
             self.start_sound("explosion")
             global score
             score += 10
