@@ -22,9 +22,9 @@ class Alien(pytch.Sprite):
         while not game_over:
             self.set_y(180)
             self.show()
+            self.switch_costume(random.choice([0, 1]))
             glide_time = random.uniform(3.0, 5.0)
             self.glide_to_xy(self.x_position, -180, glide_time)
-            self.switch_costume(random.choice([0, 1]))
 
     @pytch.when_this_sprite_clicked
     def handle_hit(self):
