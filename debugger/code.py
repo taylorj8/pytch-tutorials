@@ -37,6 +37,7 @@ class Alien(pytch.Sprite):
             global lives
             lives -= 1
             if lives == 0:
+                global game_over
                 game_over = True
                 pytch.broadcast("game-over")
         self.hide()
