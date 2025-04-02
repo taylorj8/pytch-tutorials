@@ -52,10 +52,7 @@ You might already see the issue: The programmer decided to check if the alien is
 ### Fixing the Bug
 The fix is simple: change the line that checks if the alien is an enemy to check if `costume_number` is equal to 1 instead of 2. This way, the code will correctly identify the enemy alien and award points when you click on it.
 
-```python
-if self.costume_number == 1:
-    ...
-```
+{{< commit fixing-bug-1 >}}
 
 ## Bug 2: Game doesn't end when you run out of lives
 The second bug is that the game doesn't end when you run out of lives. Let's try to track down this bug using **breakpoints**.
@@ -75,13 +72,7 @@ Look down at the debug panel. One of the alien cards is glowing red - this is th
 ### Fixing the Bug
 To fix the bug, we need to add the `global` keyword to the `else` block of the `@pytch.when_this_sprite_clicked` event handler. This way, the code will modify the global variable instead of creating a new local variable.
 
-```python
-if lives == 0:
-    global game_over
-    game_over = True
-    pytch.broadcast("game-over")
-```
-
+{{< commit fixing-bug-2 >}}
 
 ## Bug 3: Aliens always start with the friendly costume
 The third and final bug is more subtle - the aliens always start with the friendly costume on their first trip down the screen. Let's try to track down this bug with the final feature of the debugger: **stepping**.
@@ -112,16 +103,9 @@ Right, let's get back to the task at hand. Restart the program by clicking again
 
 ### The solution
 
-The problem occurs because the costume change comes after the glide, so all aliens start with the default (friendly) look. They only change costume after they’ve already been seen by the player. This means that the alien will always start with the friendly costume, and then change to the random costume for the second loop. To fix this issue, we can move the `self.switch_costume` line to before the `self.glide_to_xy` line. This way, the alien will randomise its costume before it starts gliding down the screen.
+The problem occurs because the costume change comes after the glide, so all aliens start with the default (friendly) look. They only change costume after they’ve already been seen by the player. This means that the alien will always start with the friendly costume, and then change to the random costume for the second loop. To fix this issue, we can move the `self.switch_costume` line to _before_ the `self.glide_to_xy` line. This way, the alien will randomise its costume before it starts gliding down the screen.
 
-```python
-while not game_over:
-    self.show()
-    glide_time = random.uniform(3.0, 5.0)
-    self.glide_to_xy(self.x_position, -180, glide_time)
-    self.switch_costume(random.choice([0, 1]))
-```
-
+{{< commit fixing-bug-3 >}}
 
 ## Summary
 
