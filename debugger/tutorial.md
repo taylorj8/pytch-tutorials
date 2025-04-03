@@ -9,6 +9,9 @@ In this tutorial, you'll learn how to use the Pytch Debugger to find and fix bug
 The game runs — but something's not quite right. Let's investigate!
 
 
+---
+
+
 ## The Bugs
 
 The game has three bugs that need to be fixed. Your task is to find and fix them using the Pytch Debugger.  Here’s a summary of the bugs:
