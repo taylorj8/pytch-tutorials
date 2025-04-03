@@ -34,7 +34,7 @@ This panel shows the current state of the program. It contains cards that repres
 2. **Stage Card**: This is the second card, just below the Global Card, and it represents the stage. It shows you any variables that you defined in the stage class, and the current backdrops it is using.
 3. **Actor Cards**: The remaining cards represent the actors in your program. Each actor class has its own card, which shows you the variables that you defined in that actor's class. If the actor has been cloned, the clones appear within the card as mini-cards. These mini-cards show you the variables that are specific to that clone, and the current costume it is using.
 
-![Screenshot](tutorial-assets/debug_panel.jpg)
+![Screenshot](debug_panel.png)
 
 ## Bug 1: Clicking on Aliens
 
@@ -48,7 +48,7 @@ You'll see that the code checks the value of `costume_number` to determine wheth
 
 Let's start the game in debug mode and open the debug panel. Since we know that the bug is related to the `costume_number`, we can inspect the value of this variable in the debug panel. As the aliens change costume, we see that the value of `costume_number` changes between 0 and 1. This means that the aliens are correctly switching between the friendly and enemy costumes.
 
-![Screenshot](tutorial-assets/debug_panel.jpg)
+![Screenshot](debug_panel.png)
 
 You might already see the issue: The programmer decided to check if the alien is using its second costume by checking if `costume_number` is equal to 2 - however, we can see from the debug panel that the value of `costume_number` changes between 0 and 1 - Remember: Python starts counting at 0, so the second costume is actually `costume_number == 1`. This means that the the `else` code always runs, and the alien is always treated as an enemy.
 
@@ -66,11 +66,11 @@ At first glance, nothing seems to be out of order. The code checks if the lives 
 
 Let's set a breakpoint at the end of the `else` block, on the line containing `pytch.broadcast("game-over")`. Do this by clicking on the line number in the code editor. Now run the game in debug mode and click on three friendly aliens. At this point, the game will freeze, and the line with the breakpoint will be highlighted in red. The program has paused just before this highlighted line has been executed, and we can inspect the values of the variables at this point.
 
-![Screenshot](tutorial-assets/breakpoint.jpg)
+![Screenshot](breakpoint.png)
 
 Look down at the debug panel. One of the alien cards is glowing red - this is the alien you just clicked on. You are able to see all of its variables, including the `game_over` variable. However, the `game_over` you want to change is the global one, so it shouldn't show up as a local variable! This is the source of the bug - just like `lives` and `score`, `game_over` is a global variable, so in order to modify it, we need to use the `global` keyword. This is why the game doesn't end when you run out of lives - the code is modifying a local variable instead of the global one.
 
-![Screenshot](tutorial-assets/highlighted_card.jpg)
+![Screenshot](highlighted_card.png)
 
 ### Fixing the Bug
 To fix the bug, we need to add the `global` keyword to the `else` block of the `@pytch.when_this_sprite_clicked` event handler. This way, the code will modify the global variable instead of creating a new local variable.
@@ -88,7 +88,7 @@ A quick glance at the `drift_down_screen` method shows that all the correct comp
 
 To begin, set a breakpoint at the top of the `while` loop on the line that contains `self.show()`. As we now know, this will pause the program when it reaches this line. Run the game in debug mode, and the program will pause once all of the clones have been created. When the program is paused, two buttons appear below the stage - **Continue** and **Step**. Let's take a closer look at each one.
 
-![Screenshot](tutorial-assets/debug_buttons.jpg)
+![Screenshot](debug_buttons.png)
 
 ### Continue
 
