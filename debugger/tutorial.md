@@ -12,6 +12,7 @@ The game runs — but something's not quite right. Let's investigate!
 ## The Bugs
 
 The game has three bugs that need to be fixed. Your task is to find and fix them using the Pytch Debugger.  Here’s a summary of the bugs:
+
 - **Bug 1**: You lose a life when you click on an enemy alien.
     - **Expected Behaviour**: Clicking on an enemy alien should award you points.
 - **Bug 2**: The game doesn't end when you run out of lives.
@@ -27,6 +28,7 @@ Now, let's see if we can track down these bugs using the Pytch Debugger. When yo
 
 ### The Debug Panel
 This panel shows the current state of the program. It contains cards that represent the actors and variables in your program. You can use it to inspect the values of variables and see how they change as the program runs. There are three types of card:
+
 1. **Global Card**: This is the first card on the top left of the panel. It shows you the variables that you defined outside of any class.
 2. **Stage Card**: This is the second card, just below the Global Card, and it represents the stage. It shows you any variables that you defined in the stage class, and the current backdrops it is using.
 3. **Actor Cards**: The remaining cards represent the actors in your program. Each actor class has its own card, which shows you the variables that you defined in that actor's class. If the actor has been cloned, the clones appear within the card as mini-cards. These mini-cards show you the variables that are specific to that clone, and the current costume it is using.
@@ -108,7 +110,7 @@ As you step through the code, take note of the glowing red alien card. As you st
 
 ### The bug
 
-Right, let's get back to the task at hand. Restart the program by clicking again on the yellow debug button. The you set previously remains, so the program will pause at the same point in time. Now step through the code again, and see if you can spot the problem.
+Right, let's get back to the task at hand. Restart the program by clicking again on the yellow debug button. The breakpoint you set previously remains, so the program will pause at the same point in time. Now step through the code again, and see if you can spot the problem.
 
 ### The solution
 
