@@ -34,11 +34,13 @@ This sidebar shows the current state of the program. It contains cards that repr
 
 1. **Global Card**: This is the first card in the sidebar. It shows you the variables that you defined outside of any class.
 2. **Stage Card**: This is the second card, just below the Global Card, and it represents the stage. It shows you any variables that you defined in the stage class, and the current backdrops it is using.
-3. **Actor Cards**: The remaining cards represent the actors in your program. 
+3. **Actor Cards**: The remaining cards represent the actors in your program. An actor that has clones will display in a special grouped card. The clones can be collpased by clicking on the arrow next to the number of instances.
 
 Each actor class has its own card, which shows you the variables that you defined in that actor's class. If the actor has been cloned, the clones appear within the card as mini-cards. These mini-cards show you the variables that are specific to that clone, and the current costume it is using.
 
-![Screenshot](debug_panel.png)
+Arrays are collapsed by default. You can view the contents of an array by clicking on the arrow next to the array name.
+
+![Screenshot](debug_sidebar.png)
 
 ## Bug 1: Clicking on Aliens
 
@@ -52,7 +54,7 @@ You'll see that the code checks the value of `costume_number` to determine wheth
 
 Let's start the game in debug mode and open the debug sidebar. Since we know that the bug is related to the `costume_number`, we can inspect the value of this variable in the debug sidebar. As the aliens change costume, we see that the value of `costume_number` changes between 0 and 1. This means that the aliens are correctly switching between the friendly and enemy costumes.
 
-![Screenshot](debug_panel.png)
+![Screenshot](debug_sidebar.png)
 
 You might already see the issue: The programmer decided to check if the alien is using its second costume by checking if `costume_number` is equal to 2 - however, we can see from the debug sidebar that the value of `costume_number` changes between 0 and 1 - Remember: Python starts counting at 0, so the second costume is actually `costume_number == 1`. This means that the the `else` code always runs, and the alien is always treated as an enemy.
 
