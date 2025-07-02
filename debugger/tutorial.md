@@ -27,12 +27,12 @@ Run the program and observe each of these bugs happening. In this tutorial, we w
 
 ## The Debugger Layout
 
-Now, let's see if we can track down these bugs using the Pytch Debugger. When you click the yellow debug button (beside the green play button), Pytch enters debug mode. A new **Debug** tab appears below the code editor. Clicking on it opens the **Debug Panel**.
+Now, let's see if we can track down these bugs using the Pytch Debugger. When you click the yellow debug button (beside the green play button), Pytch enters debug mode. A new **Debug** tab appears to the left of the code editor. Clicking on it opens the **Debug Sidebar**.
 
-### The Debug Panel
-This panel shows the current state of the program. It contains cards that represent the actors and variables in your program. You can use it to inspect the values of variables and see how they change as the program runs. There are three types of card:
+### The Debug Sidebar
+This sidebar shows the current state of the program. It contains cards that represent the actors and variables in your program. You can use it to inspect the values of variables and see how they change as the program runs. There are three types of card:
 
-1. **Global Card**: This is the first card on the top left of the panel. It shows you the variables that you defined outside of any class.
+1. **Global Card**: This is the first card in the sidebar. It shows you the variables that you defined outside of any class.
 2. **Stage Card**: This is the second card, just below the Global Card, and it represents the stage. It shows you any variables that you defined in the stage class, and the current backdrops it is using.
 3. **Actor Cards**: The remaining cards represent the actors in your program. 
 
@@ -42,7 +42,7 @@ Each actor class has its own card, which shows you the variables that you define
 
 ## Bug 1: Clicking on Aliens
 
-When you click on an enemy alien, you lose a life - but you should gain points instead. Let's see if we can track down the problem using the debug panel.
+When you click on an enemy alien, you lose a life - but you should gain points instead. Let's see if we can track down the problem using the debug sidebar.
 
 A good starting point when debugging is to narrow down your search by thinking about where the bug is likely to be. In this case, we know that the bug is related to clicking on aliens, so we can focus on the code that handles the click event for aliens.
 
@@ -50,11 +50,11 @@ Navigate to the portion of the code that handles the click event for aliens - un
 
 You'll see that the code checks the value of `costume_number` to determine whether the alien is friendly or not. The first costume is the friendly alien, and the second is the enemy alien. If the alien is friendly, it awards points. If it is an enemy, it deducts a life.
 
-Let's start the game in debug mode and open the debug panel. Since we know that the bug is related to the `costume_number`, we can inspect the value of this variable in the debug panel. As the aliens change costume, we see that the value of `costume_number` changes between 0 and 1. This means that the aliens are correctly switching between the friendly and enemy costumes.
+Let's start the game in debug mode and open the debug sidebar. Since we know that the bug is related to the `costume_number`, we can inspect the value of this variable in the debug sidebar. As the aliens change costume, we see that the value of `costume_number` changes between 0 and 1. This means that the aliens are correctly switching between the friendly and enemy costumes.
 
 ![Screenshot](debug_panel.png)
 
-You might already see the issue: The programmer decided to check if the alien is using its second costume by checking if `costume_number` is equal to 2 - however, we can see from the debug panel that the value of `costume_number` changes between 0 and 1 - Remember: Python starts counting at 0, so the second costume is actually `costume_number == 1`. This means that the the `else` code always runs, and the alien is always treated as an enemy.
+You might already see the issue: The programmer decided to check if the alien is using its second costume by checking if `costume_number` is equal to 2 - however, we can see from the debug sidebar that the value of `costume_number` changes between 0 and 1 - Remember: Python starts counting at 0, so the second costume is actually `costume_number == 1`. This means that the the `else` code always runs, and the alien is always treated as an enemy.
 
 ### Fixing the Bug
 The fix is simple: change the line that checks if the alien is an enemy to check if `costume_number` is equal to 1 instead of 2. This way, the code will correctly identify the enemy alien and award points when you click on it.
@@ -72,7 +72,7 @@ Let's set a breakpoint at the end of the `else` block, on the line containing `p
 
 ![Screenshot](breakpoint.png)
 
-Look down at the debug panel. One of the alien cards is glowing red - this is the alien you just clicked on. You are able to see all of its variables, including the `game_over` variable. However, the `game_over` you want to change is the global one, so it shouldn't show up as a local variable! This is the source of the bug - just like `lives` and `score`, `game_over` is a global variable, so in order to modify it, we need to use the `global` keyword. This is why the game doesn't end when you run out of lives - the code is modifying a local variable instead of the global one.
+Look at the debug sidebar. One of the alien cards is glowing red - this is the alien you just clicked on. You are able to see all of its variables, including the `game_over` variable. However, the `game_over` you want to change is the global one, so it shouldn't show up as a local variable! This is the source of the bug - just like `lives` and `score`, `game_over` is a global variable, so in order to modify it, we need to use the `global` keyword. This is why the game doesn't end when you run out of lives - the code is modifying a local variable instead of the global one.
 
 ![Screenshot](highlighted_card.png)
 
@@ -96,7 +96,7 @@ To begin, set a breakpoint at the top of the `while` loop on the line that conta
 
 ### Continue
 
-The continue button, represented by a right arrow, will continue the program until the next time an sprite hits a breakpoint. Try clicking on it to see what happens. The program will continue until the aliens reach the bottom of the screen, and then it will pause again. Take a look at the glowing alien card in the debug panel. You will notice that the glowing card changes depending on which alien hits the bottom of the screen. Click the button a few more times to see how the glowing card changes.
+The continue button, represented by a right arrow, will continue the program until the next time an sprite hits a breakpoint. Try clicking on it to see what happens. The program will continue until the aliens reach the bottom of the screen, and then it will pause again. Take a look at the glowing alien card in the debug sidebar. You will notice that the glowing card changes depending on which alien hits the bottom of the screen. Click the button a few more times to see how the glowing card changes.
 
 ### Step
 
