@@ -1,7 +1,7 @@
 - name: Debugging with the Pytch Debugger
   branch_name: jt/debugger-01
   dir_name: debugger
-  commit_id: 4d97f74c6f01a1e00c847dcb8408f95bc5462faf
+  commit_id: f0efff56806481269c6d93fb46244419973aa85b
 - name: Script-by-script Hello World
   branch_name: bn/sbs-hello-02
   dir_name: script-by-script-hello
